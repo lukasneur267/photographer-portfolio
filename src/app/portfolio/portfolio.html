@@ -1,1 +1,28 @@
-<p>portfolio works!</p>
+<section class="portfolio-section">
+  <div class="container">
+    <h1>My Portfolio</h1>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+      <button
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        (click)="selectCategory(category)"
+        class="filter-btn"
+      >
+        {{ category | uppercase }}
+      </button>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery">
+      <div *ngFor="let image of filteredImages" class="gallery-item">
+        <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" />
+        <div class="image-overlay">
+          <h3>{{ image.title }}</h3>
+          <p class="category-badge">{{ image.category }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
