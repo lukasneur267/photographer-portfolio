@@ -45,6 +45,9 @@ h6 {
   color:var(--dark);
 }
 
+.btn {
+  --bs-btn-border-radius: 0.15rem;
+}
 .btn-primary {
   --bs-btn-bg: var(--accent);
   --bs-btn-border-color: var(--accent);
