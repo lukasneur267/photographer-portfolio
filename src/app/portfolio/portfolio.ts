@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Image } from '../image.interface';
 import { IMAGES } from '../images';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.css',
 })
