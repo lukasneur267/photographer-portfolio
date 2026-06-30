@@ -1,5 +1,5 @@
 <section class="portfolio-section">
-  <div class="container">
+  <div class="container text-center">
     <h1>My Portfolio</h1>
 
     <!-- Filter Buttons -->
@@ -15,17 +15,28 @@
       }
     </div>
 
-    <!-- Image Gallery -->
     <div class="gallery">
-      @for (image of filteredImages; track $index) {
-        <div class="gallery-item">
-          <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" />
-          <div class="image-overlay">
-            <h3>{{ image.title }}</h3>
-            <p class="category-badge">{{ image.category }}</p>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <!-- Image Gallery -->
+
+        @for (image of filteredImages; track $index) {
+          <div class="col g-2">
+            <div class="gallery-item">
+              <img [src]="'images/' + image.imageUrl" [alt]="image.title" class="gallery-image" />
+              <div class="image-overlay">
+                <h3 class="img-title">{{ image.title }}</h3>
+                <p class="category-badge">{{ image.category }}</p>
+                <a
+                  [routerLink]="['/details', image.id]"
+                  class="btn btn-primary w-50 mx-auto my-2"
+                  id="details-btn"
+                  >Details</a
+                >
+              </div>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   </div>
 </section>

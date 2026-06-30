@@ -1,1 +1,23 @@
-<p>details works!</p>
+@if (image) {
+  <div class="container">
+    <div class="row my-5">
+      <div class="col">
+        <img
+          [src]="'images/' + image.imageUrl"
+          class="img-fluid"
+          [alt]="image.title"
+          class="img-fluid"
+        />
+      </div>
+      <div class="col my-auto">
+        <h1>{{ image.title }}</h1>
+        <p><strong>Category:</strong> {{ image.category }}</p>
+        <p>{{ image.description }}</p>
+        <p>Captured on: {{ image.date }}</p>
+        <a class="btn btn-primary" routerLink="/portfolio">Back to portfolio</a>
+      </div>
+    </div>
+  </div>
+} @else {
+  <h2>no image found</h2>
+}
