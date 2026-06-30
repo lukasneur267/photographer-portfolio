@@ -6,7 +6,6 @@
     <div class="filter-buttons">
       @for (category of categories; track $index) {
         <button
-          /* *ngFor="let category of categories" */
           [class.active]="selectedCategory === category"
           (click)="selectCategory(category)"
           class="filter-btn"
@@ -18,13 +17,15 @@
 
     <!-- Image Gallery -->
     <div class="gallery">
-      <div *ngFor="let image of filteredImages" class="gallery-item">
-        <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" />
-        <div class="image-overlay">
-          <h3>{{ image.title }}</h3>
-          <p class="category-badge">{{ image.category }}</p>
+      @for (image of filteredImages; track $index) {
+        <div class="gallery-item">
+          <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" />
+          <div class="image-overlay">
+            <h3>{{ image.title }}</h3>
+            <p class="category-badge">{{ image.category }}</p>
+          </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </section>
