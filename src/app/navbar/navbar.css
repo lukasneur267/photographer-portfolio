@@ -1,3 +1,4 @@
 .navbar {
-  background-color: var(--accent); /* feel free to change this later once we nail down design */
+  background-color: var(--dark); /* feel free to change this later once we nail down design */
+  color: var(--light);
 }
