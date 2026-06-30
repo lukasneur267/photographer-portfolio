@@ -4,14 +4,16 @@
 
     <!-- Filter Buttons -->
     <div class="filter-buttons">
-      <button
-        *ngFor="let category of categories"
-        [class.active]="selectedCategory === category"
-        (click)="selectCategory(category)"
-        class="filter-btn"
-      >
-        {{ category | uppercase }}
-      </button>
+      @for (category of categories; track $index) {
+        <button
+          /* *ngFor="let category of categories" */
+          [class.active]="selectedCategory === category"
+          (click)="selectCategory(category)"
+          class="filter-btn"
+        >
+          {{ category | uppercase }}
+        </button>
+      }
     </div>
 
     <!-- Image Gallery -->
