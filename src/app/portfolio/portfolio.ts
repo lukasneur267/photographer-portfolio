@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Image } from '../image.interface';
-import { IMAGES } from '../images';
 import { RouterLink } from '@angular/router';
+import { GalleryService } from '../services/gallery';
 
 @Component({
   selector: 'app-portfolio',
@@ -11,23 +11,84 @@ import { RouterLink } from '@angular/router';
   styleUrl: './portfolio.css',
 })
 export class Portfolio {
-  selectedCategory = 'all';
+  constructor(private galleryService: GalleryService) {}
 
-  images: Image[] = IMAGES;
+  selectedCategory = 'all';
+  selectedImage: Image | null = null;
 
   get categories(): string[] {
-    const cats = this.images.map((img) => img.category);
-    return ['all', ...Array.from(new Set(cats))];
+    return this.galleryService.getCategories();
   }
 
   get filteredImages(): Image[] {
-    if (this.selectedCategory === 'all') {
-      return this.images;
+    return this.galleryService.getImagesByCategory(this.selectedCategory);
+  }
+
+  get selectedImageIndex(): number {
+    if (!this.selectedImage) {
+      return -1;
     }
-    return this.images.filter((img) => img.category === this.selectedCategory);
+
+    return this.filteredImages.findIndex((image) => image.id === this.selectedImage?.id);
+  }
+
+  get previousImage(): Image | null {
+    if (!this.selectedImage || this.filteredImages.length < 2) {
+      return null;
+    }
+
+    const index = this.selectedImageIndex;
+    return this.filteredImages[(index - 1 + this.filteredImages.length) % this.filteredImages.length];
+  }
+
+  get nextImage(): Image | null {
+    if (!this.selectedImage || this.filteredImages.length < 2) {
+      return null;
+    }
+
+    const index = this.selectedImageIndex;
+    return this.filteredImages[(index + 1) % this.filteredImages.length];
+  }
+
+  get previewImages(): Image[] {
+    if (!this.selectedImage || this.filteredImages.length < 2) {
+      return [];
+    }
+
+    const index = this.selectedImageIndex;
+    const offsets = this.filteredImages.length > 2 ? [-1, 0, 1] : [0, 1];
+
+    return offsets.map(
+      (offset) => this.filteredImages[(index + offset + this.filteredImages.length) % this.filteredImages.length],
+    );
   }
 
   selectCategory(category: string): void {
     this.selectedCategory = category;
+    this.closeLightbox();
+  }
+
+  openLightbox(image: Image): void {
+    this.selectedImage = image;
+  }
+
+  closeLightbox(): void {
+    this.selectedImage = null;
+  }
+
+  showPrevious(event?: Event): void {
+    event?.stopPropagation();
+
+    if (this.previousImage) {
+      this.selectedImage = this.previousImage;
+    }
+  }
+
+  showNext(event?: Event): void {
+    event?.stopPropagation();
+
+    if (this.nextImage) {
+      this.selectedImage = this.nextImage;
+    }
   }
 }
