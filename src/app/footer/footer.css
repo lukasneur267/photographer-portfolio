@@ -1,4 +1,23 @@
-.footer {
-  background-color: var(--dark); /* feel free to change this later once we nail down design */
+footer {
+  background-color: var(--dark);
+  color: var(--faint);
+}
+
+footer a {
+  transition: color 0.2s ease;
+}
+
+footer h2 {
+  font-family: var(--body-font);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+footer a:hover,
+footer a:focus-visible {
   color: var(--light);
+}
+
+footer .border-top {
+  border-color: rgba(239, 239, 235, 0.18) !important; /* sloppy but override is needed bc im trying to stick to bootstrap classes */
 }

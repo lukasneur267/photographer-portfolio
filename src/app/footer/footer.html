@@ -1,28 +1,43 @@
-<footer class="footer mt-5">
-  <div class="container-fluid px-4 px-lg-5 d-flex flex-wrap justify-content-between align-items-center py-3">
-    <p class="col-md-4 mb-3 mb-md-0 small">&copy; 2026 Photographer's Name</p>
-    <ul class="nav col-md-4 justify-content-center list-unstyled d-flex mb-3 mb-md-0">
-      <li class="ms-3">
-        <a class="link-light text-decoration-none" href="" (click)="refreshPage($event)" aria-label="Instagram">
-          <i class="bi bi-instagram fs-5" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="link-light text-decoration-none" href="" (click)="refreshPage($event)" aria-label="Facebook">
-          <i class="bi bi-facebook fs-5" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="link-light text-decoration-none" href="" (click)="refreshPage($event)" aria-label="LinkedIn">
-          <i class="bi bi-linkedin fs-5" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li class="ms-3">
-        <a class="link-light text-decoration-none" href="" (click)="refreshPage($event)" aria-label="X">
-          <i class="bi bi-twitter-x fs-5" aria-hidden="true"></i>
-        </a>
-      </li>
-    </ul>
-    <a class="col-md-4 mb-0 text-center text-md-end link-light small" href="#top" (click)="scrollToTop($event)">Back to Top&uarr;</a>
+<footer class="mt-5">
+  <div class="container py-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-5">
+      <div class="col">
+        <h2 class="h6 mb-3 fw-bold text-uppercase">Contact</h2>
+        <p class="small mb-2">elena.marchetti@realmail.com</p>
+        <p class="small mb-0">+43 123 456 7890</p>
+      </div>
+
+      <div class="col">
+        <h2 class="h6 mb-3 fw-bold text-uppercase">Explore</h2>
+        <nav class="d-grid gap-2 small">
+          <a routerLink="/">Home</a>
+          <a routerLink="/portfolio">Portfolio</a>
+          <a routerLink="/about">About</a>
+          <a routerLink="/contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="col">
+        <h2 class="h6 mb-3 fw-bold text-uppercase">Main studio</h2>
+        <p class="small mb-1">Kettenbrückengasse 23 / 2 / 12</p>
+        <p class="small mb-1">1050 Vienna</p>
+        <p class="small mb-0">Austria</p>
+      </div>
+
+      <div class="col">
+        <h2 class="h6 mb-3 fw-bold text-uppercase">Social media</h2>
+        <nav class="d-flex gap-3" aria-label="Social media">
+          <a href="#" (click)="handleSocialClick($event)" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+          <a href="#" (click)="handleSocialClick($event)" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+          <a href="#" (click)="handleSocialClick($event)" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+          <a href="#" (click)="handleSocialClick($event)" aria-label="X"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="border-top mt-5 pt-4 d-flex flex-wrap justify-content-between gap-3 small">
+      <p class="mb-0">&copy; 2026 Elena Marchetti</p>
+      <a class="text-uppercase" href="#top" (click)="scrollToTop($event)">Back to top &uarr;</a>
+    </div>
   </div>
 </footer>
