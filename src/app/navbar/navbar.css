@@ -2,3 +2,32 @@
   background-color: var(--dark); /* feel free to change this later once we nail down design */
   color: var(--light);
 }
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.monogram {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--light);
+}
+
+.wordmark-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--light);
+}
