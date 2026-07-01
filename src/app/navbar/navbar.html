@@ -1,11 +1,11 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark text-uppercase" [class.navbar-scrolled]="useSolidNavbar">
+  <div class="container-fluid px-4 px-lg-5">
     <a class="navbar-brand" routerLink="/">
-  <div class="wordmark">
-    <div class="monogram">EM</div>
-    <span class="wordmark-name">Marchetti</span>
-  </div>
-</a>
+      <div class="d-flex align-items-center gap-3">
+        <div class="border rounded-circle d-flex align-items-center justify-content-center">EM</div>
+        <span class="small text-uppercase">Marchetti</span>
+      </div>
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0 gap-lg-2 gap-xl-3">
+      <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0 gap-lg-3 gap-xl-4">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page">
@@ -21,7 +21,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active" [class.active]="isPortfolioSection"
+            [attr.aria-current]="isPortfolioSection ? 'page' : null">
             Portfolio
           </a>
         </li>
@@ -36,7 +37,7 @@
           </a>
         </li>
       </ul>
-      <a class="btn btn-outline-light ms-lg-4" routerLink="/">Book Now</a> <!-- slot in booking service here maybe? -->
+      <a class="btn btn-outline-light ms-lg-4" routerLink="/contact">Book Now</a>
     </div>
   </div>
 </nav>
