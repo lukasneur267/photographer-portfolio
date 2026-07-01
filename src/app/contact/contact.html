@@ -1,1 +1,228 @@
-<p>contact works!</p>
+<header class="position-relative overflow-hidden text-light" id="top">
+  <img src="images/contact.jpg" alt="A photographer's studio"
+    class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" />
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+</header>
+
+<section class="bg-light">
+  <div class="container">
+    <div class="bg-light mx-auto p-4 p-lg-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-4 text-lg-end">
+          <h1 class="display-3 mb-0">Where</h1>
+        </div>
+        <div class="col-lg-1 d-none d-lg-block">
+          <div class="vr mx-auto"></div>
+        </div>
+        <div class="col-lg-7">
+          <p class="lead intro-copy mb-0">
+            You'll find me in my Vienna studio at Kettenbrückengasse 23 / 2 / 12.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="booking">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <section class="card bg-transparent border rounded-1">
+          <div class="card-body p-4 p-lg-5">
+            <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4">
+              <div>
+                <p class="eyebrow text-uppercase small mb-2 text-secondary">Contact Me</p>
+                <h2 class="h1 mb-0">{{ requestMode === 'booking' ? 'Book a date.' : 'Send a message.' }}</h2>
+              </div>
+              <div class="btn-group align-self-start" role="group" aria-label="Choose request type">
+                <button type="button" class="btn" [class.btn-dark]="requestMode === 'contact'"
+                  [class.btn-outline-dark]="requestMode !== 'contact'" [attr.aria-pressed]="requestMode === 'contact'"
+                  (click)="setRequestMode('contact')">
+                  Contact me
+                </button>
+                <button type="button" class="btn" [class.btn-dark]="requestMode === 'booking'"
+                  [class.btn-outline-dark]="requestMode !== 'booking'" [attr.aria-pressed]="requestMode === 'booking'"
+                  (click)="setRequestMode('booking')">
+                  Book me
+                </button>
+              </div>
+            </div>
+
+            @if (successMessage) {
+            <div class="alert alert-success" role="alert">
+              {{ successMessage }}
+            </div>
+            }
+
+            <form id="requestForm" [formGroup]="requestForm" (ngSubmit)="submitRequest()">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="fullName">Full name</label>
+                  <input id="fullName" type="text" class="form-control" formControlName="fullName"
+                    placeholder="Enter your full name" required
+                    [class.is-invalid]="fullName.touched && fullName.invalid" />
+                  @if (fullName.touched && fullName.invalid) {
+                  <div class="invalid-feedback">Please enter your name.</div>
+                  }
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="email">Email address</label>
+                  <input id="email" type="email" class="form-control" formControlName="email"
+                    placeholder="you@example.com" required [class.is-invalid]="email.touched && email.invalid" />
+                  @if (email.touched && email.hasError('required')) {
+                  <div class="invalid-feedback">Please enter your email address.</div>
+                  }
+                  @if (email.touched && email.hasError('email')) {
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                  }
+                </div>
+              </div>
+
+              <div class="collapse mt-0" [class.show]="requestMode === 'booking'">
+                <div class="overflow-hidden">
+                  <div class="row g-3 pt-3">
+                    <div class="col-md-6">
+                      <label class="form-label" for="sessionType">What are you booking?</label>
+                      <select id="sessionType" class="form-select" formControlName="sessionType"
+                        [required]="requestMode === 'booking'" [attr.tabindex]="requestMode === 'booking' ? null : -1"
+                        [class.is-invalid]="sessionType.touched && sessionType.invalid">
+                        <option value="">Choose a session</option>
+                        @for (booking of bookingOptions; track booking.value) {
+                        <option [value]="booking.value">{{ booking.label }}</option>
+                        }
+                      </select>
+                      @if (sessionType.touched && sessionType.invalid) {
+                      <div class="invalid-feedback">Please choose a booking type.</div>
+                      }
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label" for="bookingDate">Preferred date</label>
+                      <input id="bookingDate" type="date" class="form-control" formControlName="bookingDate"
+                        [required]="requestMode === 'booking'" [min]="minBookingDate"
+                        [attr.tabindex]="requestMode === 'booking' ? null : -1"
+                        [class.is-invalid]="bookingDate.touched && bookingDate.invalid" />
+                      @if (bookingDate.touched && bookingDate.invalid) {
+                      <div class="invalid-feedback">Please select a date from the calendar.</div>
+                      }
+                    </div>
+
+                    <div class="col-12">
+                      <div class="card border rounded-1 p-3">
+                        <div class="d-flex justify-content-between gap-3 mb-2">
+                          <span class="text-secondary">Session</span>
+                          <strong class="text-end">{{ selectedBooking?.label || 'Not selected yet' }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between gap-3 mb-3">
+                          <span class="text-secondary">Date</span>
+                          <strong class="text-end">{{ bookingDate.value || 'Choose a date' }}</strong>
+                        </div>
+
+                        @if (selectedBooking; as booking) {
+                        <p class="small text-uppercase mb-2">Selected package</p>
+                        <h3 class="h4 mb-1">{{ booking.price }}</h3>
+                        <p class="mb-2">{{ booking.length }}</p>
+                        <p class="text-secondary mb-0">{{ booking.description }}</p>
+                        } @else {
+                        <p class="text-secondary mb-0">
+                          Pick a booking type and date to see the request summary update.
+                        </p>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-0">
+                <div class="col-12">
+                  <label class="form-label" for="message">
+                    {{ requestMode === 'booking' ? 'Booking details' : 'Message' }}
+                  </label>
+                  <textarea id="message" rows="6" class="form-control" formControlName="message" required
+                    [attr.placeholder]="
+                      requestMode === 'booking'
+                        ? 'Additional booking info...'
+                        : 'I will get back to you as soon as possible...'
+                    " [class.is-invalid]="message.touched && message.invalid"></textarea>
+                  @if (message.touched && message.invalid) {
+                  <div class="invalid-feedback">Please add a message.</div>
+                  }
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg w-100 mt-4" type="submit">
+                {{ requestMode === 'booking' ? 'Send booking request' : 'Send message' }}
+              </button>
+            </form>
+
+            @if (bookings.length > 0) {
+            <section class="mt-5">
+              <div class="d-flex justify-content-between align-items-end gap-3 mb-3">
+                <div>
+                  <p class="eyebrow text-uppercase small mb-2 text-secondary">Booking service</p>
+                  <h3 class="h4 mb-0">Requested dates</h3>
+                </div>
+                <span class="text-secondary">
+                  {{ bookings.length }} {{ bookings.length === 1 ? 'request' : 'requests' }}
+                </span>
+              </div>
+
+              <div class="d-grid gap-3">
+                @for (booking of bookings; track $index) {
+                <article class="border rounded p-3 bg-white bg-opacity-75">
+                  <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+                    <div>
+                      <h4 class="h5 mb-1">{{ booking.sessionLabel }}</h4>
+                      <p class="small text-secondary mb-2">
+                        {{ booking.bookingDate }} for {{ booking.fullName }}
+                      </p>
+                      <p class="mb-0">{{ booking.message }}</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-danger align-self-md-start"
+                      (click)="bookingService.remove($index)">
+                      Remove
+                    </button>
+                  </div>
+                </article>
+                }
+              </div>
+            </section>
+            }
+          </div>
+        </section>
+
+        <div class="row row-cols-1 row-cols-md-2 g-3 mt-4">
+          <div class="col">
+            <a class="card bg-light link-dark d-flex flex-row align-items-center gap-3 p-3 border rounded-1"
+              href="tel:+431234567890">
+              <span
+                class="rounded-circle bg-dark text-light flex-shrink-0 d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-phone" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="d-block small text-uppercase text-secondary fw-bold">Phone</span>
+                <strong>+43 123 456 7890</strong>
+              </span>
+            </a>
+          </div>
+          <div class="col">
+            <a class="card bg-light link-dark d-flex flex-row align-items-center gap-3 p-3 border rounded-1"
+              href="mailto:elenamarchetti@realmail.com">
+              <span
+                class="rounded-circle bg-dark text-light flex-shrink-0 d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-envelope" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="d-block small text-uppercase text-secondary fw-bold">Email</span>
+                <strong>elenamarchetti@realmail.com</strong>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

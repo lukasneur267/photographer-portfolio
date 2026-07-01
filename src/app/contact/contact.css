@@ -1,0 +1,30 @@
+header.position-relative {
+  min-height: 58vh;
+}
+
+a.card:hover,
+a.card:focus-visible {
+  border-color: var(--accent) !important;
+  transition: 0.3s ease;
+}
+
+a.card .rounded-circle {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+#requestForm .collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+
+#requestForm .collapse.show {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+#requestForm .collapse > .overflow-hidden {
+  min-height: 0;
+}
