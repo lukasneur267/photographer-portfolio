@@ -6,9 +6,10 @@ import { About } from './about/about';
 import { Contact } from './contact/contact';
 
 export const routes: Routes = [
-  { path: '', component: Home },
-  { path: 'portfolio', component: Portfolio },
-  { path: 'about', component: About },
-  { path: 'contact', component: Contact },
-  { path: 'details/:id', component: Details },
+  { path: '', component: Home, title: 'Elena Marchetti Photography' },
+  { path: 'portfolio', component: Portfolio, title: 'Portfolio | Elena Marchetti Photography' },
+  { path: 'about', component: About, title: 'About | Elena Marchetti Photography' },
+  { path: 'contact', component: Contact, title: 'Contact | Elena Marchetti Photography' },
+  { path: 'details/:id', component: Details, title: 'Image Details | Elena Marchetti Photography' },
+  { path: '**', redirectTo: '' },
 ];
