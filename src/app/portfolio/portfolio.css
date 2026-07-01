@@ -1,69 +1,58 @@
-.portfolio-section {
-  padding: 60px 20px;
+header.position-relative {
+  min-height: 62vh;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+section.bg-light > .container > .bg-light.mx-auto {
+  --intro-panel-offset: -4.5rem;
 }
 
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  aspect-ratio: 1;
+.container-fluid .card {
+  aspect-ratio: 4 / 5;
   cursor: pointer;
 }
 
-.gallery-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-image {
-  transform: scale(1.05);
-}
-
-.image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 30px 20px;
+.container-fluid .card-img-overlay {
+  background: rgba(51, 51, 51, 0.68);
   color: var(--light);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  transition: opacity 0.2s ease;
 }
 
-.gallery-item:hover .image-overlay {
-  transform: translateY(0);
+.container-fluid .card:hover .card-img-overlay,
+.container-fluid .card:focus-visible .card-img-overlay {
+  opacity: 1 !important;
 }
 
-.image-overlay h3 {
-  margin: 0 0 5px 0;
-  font-size: 1.2rem;
-  font-weight: 600;
+.modal {
+  background: rgba(0, 0, 0, 0.94);
 }
 
-.img-title {
-  color: var(--accent);
+.modal-content > img {
+  max-height: 68vh;
+  object-fit: contain;
 }
 
-.category-badge {
-  margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.modal .btn-dark {
+  --bs-btn-bg: rgba(239, 239, 235, 0.12);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: rgba(239, 239, 235, 0.22);
+  --bs-btn-hover-border-color: transparent;
+  width: 3rem;
+  height: 3rem;
 }
 
-#details-btn:hover {
-  background-color: var(--dark);
-  border-color: var(--dark);
+.modal-footer .btn {
+  width: 5.5rem;
+  height: 3.8rem;
+}
+
+.modal-footer .btn:hover,
+.modal-footer .btn:focus-visible,
+.modal-footer .btn.opacity-100 {
+  opacity: 1 !important;
+}
+
+@media (max-width: 992) {
+  .modal-content > img {
+    max-height: 58vh;
+  }
 }
