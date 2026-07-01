@@ -13,8 +13,10 @@
         <h1>{{ image.title }}</h1>
         <p><strong>Category:</strong> {{ image.category }}</p>
         <p>{{ image.description }}</p>
-        <p>Captured on: {{ image.date }}</p>
-        <a class="btn btn-primary" routerLink="/portfolio">Back to portfolio</a>
+        <p><strong>Captured on:</strong> {{ image.date }}</p>
+        <div class="monochrome-buttos">
+          <a class="btn monochrome-btn my-3" routerLink="/portfolio">BACK TO PORTFOLIO</a>
+        </div>
       </div>
     </div>
   </div>
