@@ -1,25 +1,39 @@
+<section class="py-4" id="top"></section>
+
 @if (image) {
-  <div class="container">
-    <div class="row my-5">
-      <div class="col">
-        <img
-          [src]="'images/' + image.imageUrl"
-          class="img-fluid"
-          [alt]="image.title"
-          class="img-fluid"
-        />
+  <section class="container py-5">
+    <button class="btn btn-link text-dark text-uppercase px-0 mb-4" type="button" (click)="goBack()">
+      <i class="bi bi-arrow-left" aria-hidden="true"></i>
+      Back
+    </button>
+
+    <div class="row g-5 align-items-center">
+      <div class="col-12 col-lg-7">
+        <img [src]="'images/' + image.imageUrl" class="details-image img-fluid w-100" [alt]="image.title" />
       </div>
-      <div class="col my-auto">
-        <h1>{{ image.title }}</h1>
-        <p><strong>Category:</strong> {{ image.category }}</p>
-        <p>{{ image.description }}</p>
-        <p><strong>Captured on:</strong> {{ image.date }}</p>
-        <div class="monochrome-buttos">
-          <a class="btn monochrome-btn my-3" routerLink="/portfolio">BACK TO PORTFOLIO</a>
+      <div class="col-12 col-lg-5">
+        <p class="eyebrow text-uppercase small text-secondary mb-2">{{ image.category }}</p>
+        <h1 class="display-4 mb-3">{{ image.title }}</h1>
+        <p class="lead mb-0">{{ image.description }}</p>
+
+        <div class="details-meta my-4">
+          <div class="details-meta-item">
+            <span class="d-block small text-secondary text-uppercase">Captured on</span>
+            <strong>{{ image.date }}</strong>
+          </div>
+          <div class="details-meta-item">
+            <span class="d-block small text-secondary text-uppercase">Collection</span>
+            <strong>{{ image.category }}</strong>
+          </div>
         </div>
+
+        <a class="btn btn-outline-dark btn-sm" routerLink="/portfolio">Back to portfolio</a>
       </div>
     </div>
-  </div>
+  </section>
 } @else {
-  <h2>no image found</h2>
+  <section class="container py-5">
+    <h2>no image found</h2>
+    <a class="btn btn-outline-dark" routerLink="/portfolio">Back to portfolio</a>
+  </section>
 }

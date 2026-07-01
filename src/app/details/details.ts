@@ -1,7 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Image } from '../image.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IMAGES } from '../images';
+import { Image } from '../image.interface';
+import { GalleryService } from '../services/gallery';
 
 @Component({
   selector: 'app-details',
@@ -12,10 +13,18 @@ import { IMAGES } from '../images';
 export class Details implements OnInit {
   image: Image | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private galleryService: GalleryService,
+  ) {}
 
   ngOnInit(): void {
-    let imageId: Number = Number(this.route.snapshot.params['id']);
-    this.image = IMAGES.find((img) => img.id === imageId);
+    const imageId = Number(this.route.snapshot.params['id']);
+    this.image = this.galleryService.getImageById(imageId);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
