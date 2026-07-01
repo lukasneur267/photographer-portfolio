@@ -1,40 +1,12 @@
-.about-section {
-  padding: 6rem 0;
-  color: #333333;
+header.position-relative {
+  min-height: 58vh;
 }
 
-.about-headline {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
-  letter-spacing: 0.02em;
-  color: #333333;
-  margin-bottom: 1.5rem;
+section.bg-light > .container > .bg-light.mx-auto {
+  --intro-panel-width: 980px;
 }
 
-.about-body {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #333333;
-  margin-bottom: 1.25rem;
-}
-
-.portrait-wrapper {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.portrait-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+section.py-5 .object-fit-cover {
+  aspect-ratio: 4 / 5;
   filter: grayscale(100%) contrast(1.05);
-}
-
-@media (max-width: 991.98px) {
-  .about-headline {
-    font-size: 2.5rem;
-  }
 }
