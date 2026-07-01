@@ -3,12 +3,12 @@
     <h1>My Portfolio</h1>
 
     <!-- Filter Buttons -->
-    <div class="filter-buttons">
+    <div class="monochrome-buttons">
       @for (category of categories; track $index) {
         <button
           [class.active]="selectedCategory === category"
           (click)="selectCategory(category)"
-          class="filter-btn"
+          class="monochrome-btn"
         >
           {{ category | uppercase }}
         </button>
