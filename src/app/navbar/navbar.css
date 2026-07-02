@@ -6,25 +6,51 @@
 
 .navbar-scrolled,
 .navbar:has(.navbar-collapse.show) {
-  background-color: var(--dark);
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.12);
+  background-color: rgb(var(--bs-dark-rgb));
+  box-shadow: 0 0.25rem 1rem rgba(var(--bs-black-rgb), 0.12);
 }
 
 .nav-link {
+  position: relative;
+  color: rgba(var(--bs-light-rgb), 0.75);
   font-size: 0.82rem;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.active {
+  color: rgb(var(--bs-light-rgb));
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  left: 0.5rem;
+  height: 1px;
+  background-color: var(--bs-primary);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .navbar-brand .border {
   width: 34px;
   height: 34px;
+  --bs-border-color: var(--bs-primary);
   font-family: Georgia, serif;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
-  color: var(--light);
+  color: rgb(var(--bs-light-rgb));
 }
 
 .navbar-brand .small {
-  color: var(--light);
+  color: rgb(var(--bs-light-rgb));
   font-weight: 500;
   font-size: 0.92rem;
   letter-spacing: 0.22em;

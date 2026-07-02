@@ -1,29 +1,22 @@
-header.position-relative {
-  min-height: 62vh;
-}
-
-section.bg-light > .container > .bg-light.mx-auto {
-  --intro-panel-offset: -4.5rem;
-}
-
 .container-fluid .card {
   aspect-ratio: 4 / 5;
   cursor: pointer;
 }
 
 .container-fluid .card-img-overlay {
-  background: rgba(51, 51, 51, 0.68);
-  color: var(--light);
+  background: rgba(var(--bs-dark-rgb), 0.68);
+  color: rgb(var(--bs-light-rgb));
+  opacity: 0;
   transition: opacity 0.2s ease;
 }
 
 .container-fluid .card:hover .card-img-overlay,
 .container-fluid .card:focus-visible .card-img-overlay {
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 .modal {
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(var(--bs-black-rgb), 0.94);
 }
 
 .modal-content > img {
@@ -32,9 +25,9 @@ section.bg-light > .container > .bg-light.mx-auto {
 }
 
 .modal .btn-dark {
-  --bs-btn-bg: rgba(239, 239, 235, 0.12);
+  --bs-btn-bg: rgba(var(--bs-light-rgb), 0.12);
   --bs-btn-border-color: transparent;
-  --bs-btn-hover-bg: rgba(239, 239, 235, 0.22);
+  --bs-btn-hover-bg: rgba(var(--bs-light-rgb), 0.22);
   --bs-btn-hover-border-color: transparent;
   width: 3rem;
   height: 3rem;
@@ -43,15 +36,16 @@ section.bg-light > .container > .bg-light.mx-auto {
 .modal-footer .btn {
   width: 5.5rem;
   height: 3.8rem;
+  opacity: 0.65;
 }
 
 .modal-footer .btn:hover,
 .modal-footer .btn:focus-visible,
-.modal-footer .btn.opacity-100 {
-  opacity: 1 !important;
+.modal-footer .btn.active {
+  opacity: 1;
 }
 
-@media (max-width: 992) {
+@media (max-width: 992px) {
   .modal-content > img {
     max-height: 58vh;
   }

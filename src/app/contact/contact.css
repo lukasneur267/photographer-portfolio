@@ -1,11 +1,11 @@
-header.position-relative {
-  min-height: 58vh;
+a.card {
+  transition: border-color 0.3s ease;
 }
 
 a.card:hover,
 a.card:focus-visible {
-  border-color: var(--accent) !important;
-  transition: 0.3s ease;
+  --bs-border-color: var(--bs-primary);
+  color: rgb(var(--bs-dark-rgb));
 }
 
 a.card .rounded-circle {

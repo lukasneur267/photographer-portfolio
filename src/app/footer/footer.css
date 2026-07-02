@@ -1,6 +1,7 @@
 footer {
-  background-color: var(--dark);
-  color: var(--faint);
+  --bs-border-color: rgba(var(--bs-light-rgb), 0.18);
+  background-color: rgb(var(--bs-dark-rgb));
+  color: rgba(var(--bs-light-rgb), 0.68);
 }
 
 footer a {
@@ -8,16 +9,12 @@ footer a {
 }
 
 footer h2 {
-  font-family: var(--body-font);
+  font-family: var(--bs-body-font-family);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
 }
 
 footer a:hover,
 footer a:focus-visible {
-  color: var(--light);
-}
-
-footer .border-top {
-  border-color: rgba(239, 239, 235, 0.18) !important; /* sloppy but override is needed bc im trying to stick to bootstrap classes */
+  color: rgb(var(--bs-light-rgb));
 }
