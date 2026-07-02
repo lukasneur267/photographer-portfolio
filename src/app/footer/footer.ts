@@ -8,10 +8,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './footer.css',
 })
 export class Footer { // edit to change scroll to top functionality
-  handleSocialClick(event: Event): void {
-    event.preventDefault();
-  }
-
   scrollToTop(event: Event): void {
     event.preventDefault();
     const topElement = document.getElementById('top');
