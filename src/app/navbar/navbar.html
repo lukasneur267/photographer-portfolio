@@ -16,28 +16,30 @@
       <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0 gap-lg-3 gap-xl-4">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-            ariaCurrentWhenActive="page">
+            (click)="reloadIfCurrentPage($event, '/')" ariaCurrentWhenActive="page">
             Home
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/portfolio" routerLinkActive="active" [class.active]="isPortfolioSection"
-            [attr.aria-current]="isPortfolioSection ? 'page' : null">
+            [attr.aria-current]="isPortfolioSection ? 'page' : null" (click)="reloadIfCurrentPage($event, '/portfolio')">
             Portfolio
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page"
+            (click)="reloadIfCurrentPage($event, '/about')">
             About
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page"
+            (click)="reloadIfCurrentPage($event, '/contact')">
             Contact
           </a>
         </li>
       </ul>
-      <a class="btn btn-outline-light ms-lg-4" routerLink="/contact">Book Now</a>
+      <a class="btn btn-outline-light ms-lg-4" routerLink="/contact" [queryParams]="{ mode: 'booking' }">Book Now</a>
     </div>
   </div>
 </nav>

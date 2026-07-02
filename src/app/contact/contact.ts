@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BookingRequest, BookingService } from '../services/booking';
 
 type RequestMode = 'contact' | 'booking';
@@ -18,8 +19,11 @@ type BookingOption = {
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
-export class Contact {
-  constructor(public bookingService: BookingService) {
+export class Contact implements OnInit {
+  constructor(
+    public bookingService: BookingService,
+    private route: ActivatedRoute,
+  ) {
     this.updateBookingValidators();
   }
 
@@ -32,28 +36,28 @@ export class Contact {
       value: 'wedding',
       label: 'Wedding day',
       length: 'Full day coverage',
-      price: 'Est. Cost: €2400',
+      price: 'Est. Cost: EUR 2400',
       description: 'Ceremony, portraits, reception, and the small in-between moments.',
     },
     {
       value: 'portrait',
       label: 'Portrait session',
       length: '2 hour session',
-      price: 'Est. Cost: €450',
+      price: 'Est. Cost: EUR 450',
       description: 'Personal portraits, couples, editorial headshots, or family work.',
     },
     {
       value: 'editorial',
       label: 'Editorial story',
       length: 'Half day shoot',
-      price: 'Est. Cost: €900',
+      price: 'Est. Cost: EUR 900',
       description: 'Brand, travel, venue, or magazine-style visual storytelling.',
     },
     {
       value: 'event',
       label: 'Private event',
       length: 'Custom coverage',
-      price: 'Est. Cost: €750',
+      price: 'Est. Cost: EUR 750',
       description: 'Dinner parties, launches, intimate gatherings, and celebrations.',
     },
   ];
@@ -65,6 +69,12 @@ export class Contact {
     bookingDate: new FormControl(''),
     message: new FormControl('', [Validators.required]),
   });
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      this.setRequestMode(params.get('mode') === 'booking' ? 'booking' : 'contact');
+    });
+  }
 
   get fullName() {
     return this.requestForm.controls.fullName;

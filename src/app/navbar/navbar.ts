@@ -13,11 +13,22 @@ export class Navbar {
   constructor(private router: Router) {}
 
   get useSolidNavbar(): boolean {
-    return this.isScrolled || this.router.url.startsWith('/details'); // portfolio details page doesnt have a hero img so a transparent navbar needs to behave differently on that page
+    return this.isScrolled || this.router.url.startsWith('/details');
   }
 
   get isPortfolioSection(): boolean {
     return this.router.url.startsWith('/portfolio') || this.router.url.startsWith('/details');
+  }
+
+  reloadIfCurrentPage(event: Event, targetPath: string): void {
+    const currentPath = this.router.url.split('?')[0].split('#')[0] || '/';
+
+    if (currentPath !== targetPath) {
+      return;
+    }
+
+    event.preventDefault();
+    window.location.reload();
   }
 
   @HostListener('window:scroll')
