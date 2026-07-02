@@ -9,23 +9,140 @@
   <div class="container position-relative min-vh-100 d-flex flex-column justify-content-end py-5 pb-5">
     <div class="row row-cols-1 mb-5">
       <div class="col col-lg-8 col-xl-7">
-        <p class="eyebrow text-uppercase small mb-1">Portraits / Weddings / Editorial</p>
-        <h1 class="display-1 text-light mb-2">Photographer</h1>
-        <p class="lead mb-4">Wedding photography that is about so much more than just one day. It's about documenting who you are and how it felt to be there.</p>
+        <p class="eyebrow text-uppercase small mb-1 text-light">Portraits / Weddings / Editorial</p>
+        <h1 class="display-1 text-light mb-2">Elena Marchetti</h1>
+        <p class="lead mb-4">Here to tell your story with timeless images.</p>
         <a routerLink="/portfolio" class="btn btn-outline-light btn-lg">View My Work</a>
       </div>
     </div>
   </div>
 </section>
-<section class="featured mt-5 text-center">
-  <p>Horizontal carousel/collage of featured work</p>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3 mb-3">
+      <div class="col-lg-8">
+        <p class="eyebrow text-uppercase small mb-2 text-secondary">Featured work</p>
+        <h2 class="display-5 mb-0">Quiet frames, honest movement, real places.</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-3 px-md-4 px-xl-5">
+    <div id="featuredWorkCarousel" class="carousel slide" data-bs-interval="false">
+      <button class="carousel-control-prev" type="button" data-bs-target="#featuredWorkCarousel" data-bs-slide="prev" aria-label="Previous featured images">
+        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="carousel-inner">
+        @for (slide of featuredSlides; track $index) {
+          <div class="carousel-item" [class.active]="$index === 0">
+            <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+              @for (image of slide; track image.id) {
+                <div class="col">
+                  <figure class="ratio ratio-4x3 overflow-hidden rounded-1 bg-secondary bg-opacity-10 mb-0">
+                    <img [src]="'images/' + image.imageUrl" [alt]="image.title" class="w-100 h-100 object-fit-cover" />
+                  </figure>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#featuredWorkCarousel" data-bs-slide="next" aria-label="Next featured images">
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row g-4 mt-3 align-items-center">
+      <div class="col-lg-4">
+        <h3 class="h1 mb-0">A documentary eye with an editorial finish.</h3>
+      </div>
+      <div class="col-lg-1 d-none d-lg-block">
+        <div class="vr mx-auto"></div>
+      </div>
+      <div class="col-lg-7">
+        <p class="lead mb-3">My photographs have been selected and published by some of the most respected international magazines dedicated to weddings, fashion, and the visual arts.</p>
+        <p class="text-secondary mb-0">Vogue, Elle Spose, The Real Wedding, and many other publications in Vienna and abroad have featured my work, recognizing its style, elegance, and narrative power. Each publication is an honor, but above all a confirmation that the truth of a gaze, the delicacy of an emotion, and the light of an authentic moment can become a universal image.</p>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="about mt-5 text-center">
-  <p>Picture of photographer on the left/right, intro text on the other side</p>
+
+<div class="border-top"></div>
+
+<section class="py-5" #counterSection>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5">
+        <p class="eyebrow text-uppercase small mb-2 text-secondary">Clients &amp; publications</p>
+        <h2 class="display-5 mb-4">Stories made for albums, magazines, and homes.</h2>
+        <div class="row g-3 text-center text-lg-start">
+          @for (counter of counters(); track counter.label) {
+            <div class="col-4">
+              <strong class="display-6 d-block">{{ counter.value }}</strong>
+              <span class="small text-secondary text-uppercase">{{ counter.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <figure class="ratio ratio-16x9 bg-light">
+          <img src="images/brands.png" alt="Vogue magazine logo" class="w-100 h-100 object-fit-contain p-4" />
+        </figure>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="clients mt-5 text-center">
-  <p>client list/collage of brands on one side text on the other. add counter here for number of clients. alternate sides?</p>
-</section>
-<section class="testimonials mt-5 text-center">
-  <p>testimonials go here</p>
+
+<div class="border-top"></div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mx-auto mb-5">
+      <p class="eyebrow text-uppercase small mb-2 text-secondary">Testimonials</p>
+      <h2 class="display-5 mb-0">What clients remember.</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <article class="h-100 border bg-white p-4 d-flex flex-column rounded-1">
+          <p class="mb-4">"Elena caught the parts of the day we were too busy to see. The gallery felt like stepping back into the room."</p>
+          <div class="d-flex align-items-center gap-3 mt-auto">
+            <img src="images/wedding_3.jpg" alt="Theo" width="48" height="36" class="object-fit-cover flex-shrink-0 border" />
+            <div>
+              <strong>Mara &amp; Theo</strong>
+              <span class="d-block small text-secondary">Vienna wedding</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col">
+        <article class="h-100 border bg-white p-4 d-flex flex-column rounded-1">
+          <p class="mb-4">"She made portraits feel easy. Nothing stiff, nothing overworked."</p>
+          <div class="d-flex align-items-center gap-3 mt-auto">
+            <img src="images/portrait_2.jpg" alt="Leila Grant" width="48" height="36" class="object-fit-cover flex-shrink-0 border" />
+            <div>
+              <strong>Leila Grant</strong>
+              <span class="d-block small text-secondary">Editorial portrait</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col">
+        <article class="h-100 border bg-white p-4 d-flex flex-column rounded-1">
+          <p class="mb-4">"She saved my mother from a very slippery dance floor and donated to charity on the way out."</p>
+          <div class="d-flex align-items-center gap-3 mt-auto">
+            <img src="images/wedding_2.jpg" alt="Nico and Alba" width="48" height="36" class="object-fit-cover flex-shrink-0 border" />
+            <div>
+              <strong>Nico &amp; Alba</strong>
+              <span class="d-block small text-secondary">Lake Como elopement</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
 </section>
