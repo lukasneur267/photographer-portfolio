@@ -5,6 +5,8 @@ import { BookingRequest, BookingService } from '../services/booking';
 
 type RequestMode = 'contact' | 'booking';
 
+const EMAIL_PATTERN = /^[^\s@]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
 type BookingOption = {
   value: string;
   label: string;
@@ -64,7 +66,7 @@ export class Contact implements OnInit {
 
   requestForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(EMAIL_PATTERN)]),
     sessionType: new FormControl(''),
     bookingDate: new FormControl(''),
     message: new FormControl('', [Validators.required]),

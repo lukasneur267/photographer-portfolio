@@ -74,7 +74,7 @@
                   @if (email.touched && email.hasError('required')) {
                   <div class="invalid-feedback">Please enter your email address.</div>
                   }
-                  @if (email.touched && email.hasError('email')) {
+                  @if (email.touched && (email.hasError('email') || email.hasError('pattern'))) {
                   <div class="invalid-feedback">Please enter a valid email address.</div>
                   }
                 </div>
