@@ -19,7 +19,7 @@ export class Home implements AfterViewInit, OnDestroy {
   @ViewChild('counterSection') counterSection?: ElementRef<HTMLElement>;
 
   constructor(private galleryService: GalleryService) {
-    this.featuredImages = this.galleryService.getFeaturedImages(6);
+    this.featuredImages = this.galleryService.getFeaturedImages(8); // ideally there would be more images to cycle through as this carousel is somewhat redundant rn
   }
 
   featuredImages: Image[] = [];
@@ -40,11 +40,18 @@ export class Home implements AfterViewInit, OnDestroy {
       return [];
     }
 
-    return this.featuredImages.map((_, startIndex) =>
-      Array.from({ length: Math.min(4, this.featuredImages.length) }, (_, offset) => {
-        return this.featuredImages[(startIndex + offset) % this.featuredImages.length];
-      }),
-    );
+    const imagesPerSlide = 4;
+    const slides: Image[][] = [];
+
+    for (let index = 0; index < this.featuredImages.length; index += imagesPerSlide) {
+      const slide = this.featuredImages.slice(index, index + imagesPerSlide);
+
+      if (slide.length === imagesPerSlide) {
+        slides.push(slide);
+      }
+    }
+
+    return slides.length > 0 ? slides : [this.featuredImages];
   }
 
   ngAfterViewInit(): void {
